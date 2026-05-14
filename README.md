@@ -1,64 +1,102 @@
-# Visualizador de Atividade do GitHub
+# Visualizador de Atividades do GitHub
 
-## Introdução
-Esse é um código em Python que permite visualizar as atividades recentes de um usuário no GitHub. Usando a API do GitHub, o código busca eventos relacionados a um usuário específico e os exibe de forma organizada.
-
----
-
-## Key Concepts
-
-Alguns conceitos-chave:
-
-- **API do GitHub**: Uma interface que permite interagir com os dados do GitHub, como repositórios, usuários e eventos.
-- **Eventos**: Ações realizadas por um usuário, como commits, criação de repositórios, e muito mais.
-- **Requests**: Uma biblioteca Python que facilita fazer requisições HTTP.
+## 📋 Descrição
+Aplicação desktop que permite visualizar as atividades recentes de qualquer usuário do GitHub através de uma interface gráfica intuitiva. O programa utiliza a API pública do GitHub para buscar e exibir eventos como commits, criação de repositórios, forks, issues e muito mais.
 
 ---
 
-## Code Structure
-
-O código é estruturado em funções que realizam tarefas específicas:
-
-- `get_github_activity(username)`: Busca e exibe as atividades do usuário.
-- `format_date(date_str)`: Formata a data recebida da API para um formato mais legível.
-
----
-
-## Explicação do Código
-
-## 1 Importações
-O código começa importando as bibliotecas necessárias:
-
-- `requests` para fazer chamadas à API  
-- `datetime` para manipulação de datas  
-
-
-## 2 Função `get_github_activity`
-
-- Recebe o nome de usuário como parâmetro  
-- Constrói a URL da API e faz uma requisição GET  
-- Verifica se a resposta é bem-sucedida (status 200). Se não, exibe uma mensagem de erro  
-- Se não houver eventos, informa que nenhuma atividade foi encontrada  
-- Para cada evento, exibe:
-  - O tipo  
-  - O repositório  
-  - A data formatada  
-
-## 3 Detalhes dos Eventos
-Para cada tipo de evento, o código verifica e exibe informações adicionais, como:
-
-- Commits em um `PushEvent`  
-- Ações em um `IssuesEvent`  
-
-
-## 4 Função `format_date`
-
-Converte a string de data recebida da API para um formato mais legível: (DD/MM/AAAA HH:MM).
-
-## 5 Execução do Programa:  
-O bloco `if __name__ == "__main__` permite que o código seja executado diretamente, solicitando ao usuário o nome de usuário do GitHub.
+## ✨ Características
+- **Interface Gráfica Moderna**: Desenvolvida com Tkinter, oferece uma experiência amigável
+- **Busca em Tempo Real**: Consulta a API do GitHub para obter dados atualizados
+- **Exibição Estruturada**: Mostra as 10 atividades mais recentes do usuário
+- **Tipos de Eventos Suportados**:
+  - 📤 Push (commits)
+  - 🆕 Create (novas branches/tags)
+  - 🔀 Fork
+  - ⚠️ Issues
+  - E muito mais!
 
 ---
 
-## Conclusão
-Esse código é uma ótima maneira de interagir com a API do GitHub e visualizar as atividades de um usuário. Com algumas modificações, você pode expandir suas funcionalidades, como adicionar mais filtros ou exibir mais informações. Experimente e veja como você pode personalizar!!
+## 🛠️ Requisitos
+- Python 3.7 ou superior
+- Bibliotecas Python: `tkinter`, `requests`, `datetime`
+
+---
+
+## 📦 Instalação
+
+### 1. Clonar ou baixar o projeto
+```bash
+cd "github activity viewer"
+```
+
+### 2. Instalar as dependências
+Execute o comando abaixo para instalar as bibliotecas necessárias:
+```bash
+pip install -r requeriments.txt
+```
+
+Ou instale manualmente:
+```bash
+pip install requests
+```
+
+---
+
+## 🚀 Como Executar
+
+### No Windows (PowerShell):
+```powershell
+python main.py
+```
+
+### No Windows (Prompt de Comando):
+```cmd
+python main.py
+```
+
+### No Linux/Mac:
+```bash
+python3 main.py
+```
+
+---
+
+## 📝 Como Usar
+1. **Execute o programa** usando os comandos acima
+2. **Digite um nome de usuário** do GitHub na primeira área
+3. **Clique em "Buscar"** ou pressione **Enter**
+4. **Visualize as atividades** na área de resultados
+
+### Exemplo:
+Digite `torvalds` para ver as atividades de Linus Torvalds, ou `guido` para Guido van Rossum.
+
+---
+
+## 🏗️ Estrutura do Código
+
+### Funções Principais
+- **`get_github_activity()`**: Busca eventos da API do GitHub e os exibe na interface
+- **`format_date()`**: Converte a data ISO (2026-05-14T16:10:00Z) para formato brasileiro (14/05/2026 16:10)
+
+### Interface
+- **Área 1 - Título**: "Visualizador de Atividades do GitHub"
+- **Área 2 - Busca**: Campo de entrada para nome de usuário + botão Buscar
+- **Área 3 - Resultados**: Exibição das atividades com barra de rolagem
+
+---
+
+## 🔍 Detalhes dos Eventos Exibidos
+Para cada evento encontrado, o programa mostra:
+- **Tipo**: PushEvent, CreateEvent, ForkEvent, IssuesEvent, etc.
+- **Repositório**: Nome do repositório relacionado ao evento
+- **Data**: Data e hora formatadas em padrão brasileiro
+- **Detalhes adicionais**: Mensagens de commit, tipo de criação, ações em issues
+
+---
+
+## ⚠️ Observações
+- A API do GitHub tem limite de requisições: 60 por hora para requisições não autenticadas
+- Se não encontrar eventos, pode significar que o usuário não tem atividades públicas recentes
+- A aplicação busca apenas as 10 atividades mais recentes
